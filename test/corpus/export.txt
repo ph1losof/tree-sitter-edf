@@ -1,0 +1,358 @@
+================================================================================
+Export: Basic export keyword
+================================================================================
+
+export API_KEY=secret123
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: With double-quoted value
+================================================================================
+
+export SECRET="my secret value"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Export: With single-quoted value
+================================================================================
+
+export LITERAL='raw value'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (single_quoted_string
+      (single_quoted_content))))
+
+================================================================================
+Export: With empty value
+================================================================================
+
+export EMPTY=
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)))
+
+================================================================================
+Export: With empty double-quoted value
+================================================================================
+
+export EMPTY=""
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (double_quoted_string)))
+
+================================================================================
+Export: With empty single-quoted value
+================================================================================
+
+export EMPTY=''
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (single_quoted_string)))
+
+================================================================================
+Export: Multiple exports consecutive
+================================================================================
+
+export KEY1=value1
+export KEY2=value2
+export KEY3=value3
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: Mixed with non-export pairs
+================================================================================
+
+export EXPORTED=yes
+REGULAR=also
+export ANOTHER=exported
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: With inline comment
+================================================================================
+
+export PORT=3000 # Exported port number
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))
+    (inline_comment)))
+
+================================================================================
+Export: With leading spaces (stripped)
+================================================================================
+
+  export KEY=value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: With leading tab (stripped)
+================================================================================
+
+	export KEY=value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: Multiple spaces after keyword
+================================================================================
+
+export   KEY=value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: Tab after keyword
+================================================================================
+
+export	KEY=value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: Mixed whitespace after keyword
+================================================================================
+
+export 	 KEY=value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: With escape sequences in double quotes
+================================================================================
+
+export JSON="{\"key\": \"value\"}"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (double_quoted_string
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content))))
+
+================================================================================
+Export: With URL value
+================================================================================
+
+export DATABASE_URL=postgres://user:pass@localhost:5432/db
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: With hex color
+================================================================================
+
+export COLOR=#ff5733
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Export: With multiline double-quoted
+================================================================================
+
+export CERT="-----BEGIN CERT-----
+content
+-----END CERT-----"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Export: Between comments
+================================================================================
+
+# Before export
+export KEY=value
+# After export
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment
+    (comment_content))
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (comment
+    (comment_content)))
+
+================================================================================
+Export: Common shell style
+================================================================================
+
+export PATH=/usr/local/bin:$PATH
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+      (unquoted_content)
+      (simple_variable))))
+
+================================================================================
+Export: AWS credentials style
+================================================================================
+
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (pair
+    (export_keyword)
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+

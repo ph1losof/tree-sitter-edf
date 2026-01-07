@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+build/
+prebuilds/
+target/
+
+# Generated (but we commit parser.c and scanner.c)
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

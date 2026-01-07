@@ -1,0 +1,66 @@
+{
+  "name": "tree-sitter-edf",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for EDF (Ecolog Dotenv File Format)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ph1losof/tree-sitter-edf.git"
+  },
+  "license": "MIT",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "dotenv",
+    "env",
+    "edf"
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
+  "dependencies": {
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.22.0",
+    "prebuildify": "^6.0.0"
+  },
+  "scripts": {
+    "build": "node-gyp-build",
+    "generate": "tree-sitter generate",
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "test": "tree-sitter test",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.edf",
+      "injection-regex": "^edf$",
+      "file-types": [
+        "env",
+        "env.local",
+        "env.development",
+        "env.production",
+        "env.test"
+      ],
+      "highlights": "queries/highlights.scm"
+    }
+  ]
+}

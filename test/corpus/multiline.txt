@@ -1,0 +1,321 @@
+================================================================================
+Multiline: Backslash continuation simple
+================================================================================
+
+LONG_VALUE=first\
+second
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Multiple continuations
+================================================================================
+
+CONFIG=line1\
+line2\
+line3
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Three continuations
+================================================================================
+
+PATH=a\
+b\
+c\
+d
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Continuation with leading whitespace on next line (stripped)
+================================================================================
+
+PATH=/usr/bin:\
+     /usr/local/bin
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Continuation with tab indent
+================================================================================
+
+VALUE=start\
+	tabbed
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Continuation at path colon
+================================================================================
+
+PATH=/bin:\
+/sbin:\
+/usr/bin
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Double-quoted with literal newline
+================================================================================
+
+TEXT="Line 1
+Line 2"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Multiline: Single-quoted with literal newline
+================================================================================
+
+TEXT='Line 1
+Line 2'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (single_quoted_string
+      (single_quoted_content))))
+
+================================================================================
+Multiline: Double-quoted three lines
+================================================================================
+
+TEXT="Line 1
+Line 2
+Line 3"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Multiline: Single-quoted three lines
+================================================================================
+
+TEXT='Line 1
+Line 2
+Line 3'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (single_quoted_string
+      (single_quoted_content))))
+
+================================================================================
+Multiline: RSA private key style (double-quoted)
+================================================================================
+
+PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+MIIBogIBAAJBALRiMLAHudeSA2CtGjsYI+O...
+dGZjaGVudGljb24uY29t0...
+-----END RSA PRIVATE KEY-----"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Multiline: Certificate style (single-quoted)
+================================================================================
+
+CERT='-----BEGIN CERTIFICATE-----
+MIIDXTCCAkWgAwIBAgIJAJC1...
+-----END CERTIFICATE-----'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (single_quoted_string
+      (single_quoted_content))))
+
+================================================================================
+Multiline: Double-quoted with escape and literal newline
+================================================================================
+
+TEXT="Line1\nLine2
+Line3"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content))))
+
+================================================================================
+Multiline: Backslash NOT at end of line is literal
+================================================================================
+
+KEY=value\text
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: Double backslash followed by more text (not continuation)
+================================================================================
+
+KEY=path\\to\\dir
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
+================================================================================
+Multiline: JSON spread across lines (double-quoted)
+================================================================================
+
+JSON="{
+  \"key\": \"value\",
+  \"nested\": {
+    \"inner\": true
+  }
+}"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content)
+      (escape_sequence)
+      (double_quoted_content))))
+
+================================================================================
+Multiline: SQL query (double-quoted)
+================================================================================
+
+QUERY="SELECT *
+FROM users
+WHERE active = true"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Multiline: Empty lines in quoted string
+================================================================================
+
+TEXT="Line 1
+
+Line 3"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (double_quoted_string
+      (double_quoted_content))))
+
+================================================================================
+Multiline: Continuation followed by pair on next line
+================================================================================
+
+MULTI=first\
+second
+NEXT=value
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content)))
+  (pair
+    (key)
+    (unquoted_value
+          (unquoted_content))))
+
