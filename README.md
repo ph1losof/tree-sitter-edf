@@ -48,11 +48,7 @@ PORT=3000
 
 ### Neovim (nvim-treesitter)
 
-> **Note:** A PR to add EDF to nvim-treesitter is pending: [nvim-treesitter#8412](https://github.com/nvim-treesitter/nvim-treesitter/pull/8412)
->
-> Once merged, you can install with `:TSInstall edf`
-
-Until then, add the following to your Neovim configuration:
+Add the following to your Neovim configuration:
 
 ```lua
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
